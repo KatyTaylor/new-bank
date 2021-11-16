@@ -1,7 +1,12 @@
 package newbank.server;
 
 import java.util.HashMap;
-
+/**
+ *Represents the Bank
+ *contains a HashMap "customers", where Customer's userName (a String) is a key which is mapped to a Customer object - a value in the HashMap
+ *commands from NewBanks customer processed in processRequest()
+ * also contains a validation method checkLogInDetails() that needs building on to validate passwords
+ */
 public class NewBank {
 	
 	private static final NewBank bank = new NewBank();
@@ -41,7 +46,11 @@ public class NewBank {
 	public synchronized String processRequest(CustomerID customer, String request) {
 		if(customers.containsKey(customer.getKey())) {
 			switch(request) {
-			case "SHOWMYACCOUNTS" : return showMyAccounts(customer);
+			//case "SHOWMYACCOUNTS" : return showMyAccounts(customer);
+				case "1" : return showMyAccounts(customer);
+				case "2" : return addMainAccount(customer);
+				case "3" : return addSavingsAccount(customer);
+				case "4" : return addCheckingAccount(customer);
 			default : return "FAIL";
 			}
 		}
@@ -52,4 +61,24 @@ public class NewBank {
 		return (customers.get(customer.getKey())).accountsToString();
 	}
 
+	private String addMainAccount(CustomerID customer) {
+		Customer userName = customers.get(customer.getKey());
+		Account main = new Account("Main", 0.00);
+		userName.addAccount(main);
+		return ("SUCCESS New account " + main.toString());
+	}
+
+	private String addSavingsAccount(CustomerID customer) {
+		Customer userName = customers.get(customer.getKey());
+		Account savings = new Account("Savings", 0.00);
+		userName.addAccount(savings);
+		return ("SUCCESS New account " + savings.toString());
+	}
+
+	private String addCheckingAccount(CustomerID customer) {
+		Customer userName = customers.get(customer.getKey());
+		Account checking = new Account("Checking", 0.00);
+		userName.addAccount(checking);
+		return ("SUCCESS New account " + checking.toString());
+	}
 }

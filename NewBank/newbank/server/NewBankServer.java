@@ -3,7 +3,12 @@ package newbank.server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-
+/**
+ * NewBankServer is a Thread which is started as part of the main() function
+ * and runs on localhost port 14002
+ * It starts up a new client handler thresd to receive incoming connections and process requests
+ * (KT)
+ */
 public class NewBankServer extends Thread{
 	
 	private ServerSocket server;

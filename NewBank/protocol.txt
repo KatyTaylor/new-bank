@@ -1,17 +1,40 @@
-This document details the protocol for interacting with the NewBank server.  
+This document details the protocol for interacting with the NewBank server.
 
-A customer enters the command below and sees the messages returned 
+A customer enters the command below and sees the messages returned
 
-SHOWMYACCOUNTS
-Returns a list of all the customers accounts along with their current balance 
-e.g. Main: 1000.0 
+Menu 1 options:
 
-NEWACCOUNT <Name>
-e.g. NEWACCOUNT Savings
+1
+Select this if you are an existing customer, takes you to menu 2.
+
+2
+Select this if you would like to register as a customer. Takes details.
 Returns SUCCESS or FAIL
 
+
+Menu 2 options:
+
+1
+Returns a list of all the customers accounts along with their current balance
+e.g. Main: 1000.0
+
+2
+Opens a new 'Main' account
+Returns SUCCESS or FAIL
+
+3
+Opens a new 'Savings' account
+Returns SUCCESS or FAIL
+
+4
+Opens a new 'Checking' account
+Returns SUCCESS or FAIL
+
+
+Not yet implemented:
+
 MOVE <Amount> <From> <To>
-e.g. MOVE 100 Main Savings 
+e.g. MOVE 100 Main Savings
 Returns SUCCESS or FAIL
 
 PAY <Person/Company> <Ammount>

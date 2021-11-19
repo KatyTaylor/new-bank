@@ -25,6 +25,11 @@ jobs:
       - name: Start New Bank server
         run: |
           cd NewBank/newbank/server
+          echo "in the server directory"
           javac *.java
+          echo "compiled the java files"
           cd ../..
+          echo "in the newbank directory"
           java newbank.server.NewBankServer
+          echo "started the server"
+          exit

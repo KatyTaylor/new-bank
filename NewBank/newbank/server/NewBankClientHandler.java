@@ -19,7 +19,6 @@ public class NewBankClientHandler extends Thread {
 	}
 
 
-	//MK Updated this section 14/11/21
 	//Case switch newsletter registration or existing account.
 
 	public void run() {
@@ -60,7 +59,7 @@ public class NewBankClientHandler extends Thread {
 					}
 
 					break;
-				case 2: // ADDED BY MK 14/11/21
+				case 2:
 					out.println("Please enter your Full Name including Title");
 					String fullname = in.readLine();
 

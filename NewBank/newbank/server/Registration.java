@@ -36,5 +36,3 @@ public class Registration {
 	}
 
 }
-
-// Class added by Marek 14/11/21

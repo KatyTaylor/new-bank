@@ -7,6 +7,14 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+/**
+ * ExampleClient is a Thread, which is started as part of the main() function.
+ * It reads command line input from the user and passes it to the bank server.
+ *
+ * bankServerResponceThread is started on initialisation of an ExampleClient object.
+ * It listens for responses from the bank server and outputs them to the command line.
+ * (KT)
+ */
 public class ExampleClient extends Thread{
 
 	private Socket server;

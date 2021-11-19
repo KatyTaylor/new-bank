@@ -6,7 +6,13 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class NewBankClientHandler extends Thread {
+/**
+ *NewBankClientHandler is a Thread which deals with requests from the client.
+ * It initially asks for the userName and a password and deals with the login.
+ * Then it waits for commands and passes them to a NewBank instance to respond
+ * (KT)
+ */
+public class NewBankClientHandler extends Thread{
 
 	private NewBank bank;
 	private BufferedReader in;
@@ -46,9 +52,15 @@ public class NewBankClientHandler extends Thread {
 					// requests
 					CustomerID customer = bank.checkLogInDetails(userName, password);
 					// if the user is authenticated then get requests from the user and process them
-					if (customer != null) {
+					if(customer != null) {
 						out.println("Log In Successful. What do you want to do?");
-						while (true) {
+
+						out.println("1. Check your accounts");
+						out.println("2. Open new Main account");
+						out.println("3. Open new Savings account");
+						out.println("4. Open new Checking account");
+
+						while(true) {
 							String request = in.readLine();
 							System.out.println("Request from " + customer.getKey());
 							String responce = bank.processRequest(customer, request);

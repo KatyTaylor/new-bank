@@ -67,7 +67,7 @@ public class NewBankClientHandler extends Thread {
 					out.println("Please enter your email address. You will be enrolled to our newsletter & updates");
 					String email = in.readLine();
 
-					out.println("Please enter your subsription password. Please note this is NOT your BANKING PASSWORD");
+					out.println("Please enter your subscription password. Please note this is NOT your BANKING PASSWORD");
 					String pass = in.readLine();
 
 					Registration registration = new Registration(fullname, email, pass);

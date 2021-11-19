@@ -11,6 +11,7 @@ public class Customer {
 
 	private ArrayList<Account> accounts;
 	private String password;
+	private Registration registration;
 
 	public Customer() {
 		accounts = new ArrayList<>();
@@ -39,5 +40,13 @@ public class Customer {
 
 	public Boolean passwordMatches(String password) {
 		return this.password.equals(password);
+	}
+
+	public Registration getRegistration() {
+		return registration;
+	}
+
+	public void setRegistration(Registration registration) {
+		this.registration = registration;
 	}
 }

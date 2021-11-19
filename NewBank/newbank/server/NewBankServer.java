@@ -10,13 +10,13 @@ import java.net.Socket;
  * (KT)
  */
 public class NewBankServer extends Thread{
-	
+
 	private ServerSocket server;
-	
+
 	public NewBankServer(int port) throws IOException {
 		server = new ServerSocket(port);
 	}
-	
+
 	public void run() {
 		// starts up a new client handler thread to receive incoming connections and process requests
 		System.out.println("New Bank Server listening on " + server.getLocalPort());
@@ -38,9 +38,9 @@ public class NewBankServer extends Thread{
 			}
 		}
 	}
-	
+
 	public static void main(String[] args) throws IOException {
 		// starts a new NewBankServer thread on a specified port number
-		new NewBankServer(14002).start();
+		new NewBankServer(15002).start();
 	}
 }

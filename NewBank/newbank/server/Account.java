@@ -7,7 +7,7 @@ import java.text.DecimalFormat;
  *a bank account has an account name and an opening balance
  */
 public class Account {
-	
+
 	private String accountName;
 	private double openingBalance;
 	//DecimalFormat moneyFormat = new DecimalFormat("'£'###,##0.00");
@@ -16,7 +16,7 @@ public class Account {
 		this.accountName = accountName;
 		this.openingBalance = openingBalance;
 	}
-	
+
 	public String toString() {
 		return (accountName + ": " + openingBalance);
 	}

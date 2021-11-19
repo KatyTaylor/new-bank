@@ -8,8 +8,6 @@ public class Customer {
 
 	private ArrayList<Account> accounts;
 
-
-
 	public Customer() {
 		accounts = new ArrayList<>();
 	}
@@ -26,7 +24,6 @@ public class Customer {
 		accounts.add(account);
 	}
 
-
 	public Registration getRegistration() {
 		return registration;
 	}
@@ -34,7 +31,4 @@ public class Customer {
 	public void setRegistration(Registration registration) {
 		this.registration = registration;
 	}
-
-
-
 }

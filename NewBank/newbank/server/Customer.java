@@ -8,13 +8,14 @@ import java.util.ArrayList;
  * a method to print the accounts owned by the Customer: accountsToString()
  */
 public class Customer {
-	
+
 	private ArrayList<Account> accounts;
-	
+	private String password;
+
 	public Customer() {
 		accounts = new ArrayList<>();
 	}
-	
+
 	public String accountsToString() {
 		String s = "";
 		for(Account a : accounts) {
@@ -24,6 +25,19 @@ public class Customer {
 	}
 
 	public void addAccount(Account account) {
-		accounts.add(account);		
+		accounts.add(account);
+	}
+
+	public void setPassword(String password) {
+		// don't allow password resets at the moment
+		if(this.password != null){
+			return;
+		}
+
+		this.password = password;
+	}
+
+	public Boolean passwordMatches(String password) {
+		return this.password.equals(password);
 	}
 }

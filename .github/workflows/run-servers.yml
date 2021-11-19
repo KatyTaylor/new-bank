@@ -24,5 +24,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: Start New Bank server
         run: |
-          cd NewBank
-          java -cp java newbank.server.NewBankServer
+          cd NewBank/newbank/server
+          javac *.java
+          cd ../..
+          java newbank.server.NewBankServer

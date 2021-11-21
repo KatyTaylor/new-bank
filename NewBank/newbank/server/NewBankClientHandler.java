@@ -24,9 +24,7 @@ public class NewBankClientHandler extends Thread{
 		out = new PrintWriter(s.getOutputStream(), true);
 	}
 
-
 	//Case switch newsletter registration or existing account.
-
 	public void run() {
 
 		// keep getting requests from the client and processing them

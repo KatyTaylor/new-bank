@@ -9,9 +9,9 @@ import java.util.ArrayList;
  */
 public class Customer {
 
-	private Registration registration;
-
 	private ArrayList<Account> accounts;
+	private String password;
+	private Registration registration;
 
 	public Customer() {
 		accounts = new ArrayList<>();
@@ -27,6 +27,19 @@ public class Customer {
 
 	public void addAccount(Account account) {
 		accounts.add(account);
+	}
+
+	public void setPassword(String password) {
+		// don't allow password resets at the moment
+		if(this.password != null){
+			return;
+		}
+
+		this.password = password;
+	}
+
+	public Boolean passwordMatches(String password) {
+		return this.password.equals(password);
 	}
 
 	public Registration getRegistration() {

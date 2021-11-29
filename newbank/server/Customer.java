@@ -31,11 +31,6 @@ public class Customer {
 	}
 
 	public void setPassword(String password) {
-		// don't allow password resets at the moment
-		if(this.password != null){
-			return;
-		}
-
 		this.password = password;
 	}
 
@@ -45,7 +40,7 @@ public class Customer {
 
 	
 	public void setMemorableWord(String memorableWord) {
-		// don't allow password resets at the moment
+		// don't allow memorable word resets at the moment
 		if(this.memorableWord != null){
 			return;
 		}

@@ -11,6 +11,7 @@ public class Customer {
 
 	private ArrayList<Account> accounts;
 	private String password;
+	private String memorableWord;
 	private Registration registration;
 
 	public Customer() {
@@ -40,6 +41,20 @@ public class Customer {
 
 	public Boolean passwordMatches(String password) {
 		return this.password.equals(password);
+	}
+
+	
+	public void setMemorableWord(String memorableWord) {
+		// don't allow password resets at the moment
+		if(this.memorableWord != null){
+			return;
+		}
+
+		this.memorableWord = memorableWord;
+	}
+
+	public Boolean memorableWordMatches(String memorableWordd) {
+		return this.memorableWord.equals(memorableWord);
 	}
 
 	public Registration getRegistration() {

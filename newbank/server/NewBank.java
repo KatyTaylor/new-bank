@@ -20,16 +20,19 @@ public class NewBank {
 	private void addTestData() {
 		Customer bhagy = new Customer();
 		bhagy.setPassword("secretB");
+		bhagy.setMemorableWord("memorableB");
 		bhagy.addAccount(new Account("Main", 1000.0));
 		customers.put("Bhagy", bhagy);
 
 		Customer christina = new Customer();
 		christina.setPassword("secretC");
+		christina.setMemorableWord("memorableC");
 		christina.addAccount(new Account("Savings", 1500.0));
 		customers.put("Christina", christina);
 
 		Customer john = new Customer();
 		john.setPassword("secretJ");
+		john.setMemorableWord("memorableJ");
 		john.addAccount(new Account("Checking", 250.0));
 		customers.put("John", john);
 	}
@@ -45,6 +48,29 @@ public class NewBank {
 			}
 		}
 		return null;
+	}
+
+	public boolean isUsername(String userName) {
+		if(customers.containsKey(userName)) {
+			return true;
+	}
+	return false;
+}
+
+	public synchronized Customer getCustomer(String userName) {
+		if(customers.containsKey(userName)) {
+				return customers.get(userName);
+			}
+		return null;
+	}
+
+	public boolean isMemorableWord(String userName, String memorableWord){
+		if(customers.containsKey(userName)) {
+			if(customers.get(userName).memorableWordMatches(memorableWord)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	// commands from the NewBank customer are processed in this method
@@ -66,9 +92,10 @@ public class NewBank {
 		return (customers.get(customer.getKey())).accountsToString();
 	}
 
-	public void addCustomer(Customer customer, String password) {
+	public void addCustomer(Customer customer, String password, String memorableWord) {
 		customer.addAccount(new Account("Main", 0));
 		customer.setPassword(password);
+		customer.setMemorableWord(memorableWord);
 		String username = customer.getRegistration().getFullname().split(" ")[0];
 		customers.put(username, customer);
 	}

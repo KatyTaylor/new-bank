@@ -66,8 +66,9 @@ public class NewBank {
 		return (customers.get(customer.getKey())).accountsToString();
 	}
 
-	public void addCustomer(Customer customer) {
+	public void addCustomer(Customer customer, String password) {
 		customer.addAccount(new Account("Main", 0));
+		customer.setPassword(password);
 		String username = customer.getRegistration().getFullname().split(" ")[0];
 		customers.put(username, customer);
 	}

@@ -76,7 +76,9 @@ public class NewBankClientHandler extends Thread{
 		// ask for user name
 		out.println("Enter Username");
 		String userName = in.readLine();
-		// ask for password
+		int i=3;
+		for(i=3;i>0;i--){
+		// ask for password. The customer has 3 attempts
 		out.println("Enter Password");
 		String password = in.readLine();
 		out.println("Checking Details...");
@@ -84,6 +86,7 @@ public class NewBankClientHandler extends Thread{
 		// requests
 		CustomerID customer = bank.checkLogInDetails(userName, password);
 		// if the user is authenticated then get requests from the user and process them
+
 		if(customer != null) {
 			printMenu2();
 
@@ -94,8 +97,15 @@ public class NewBankClientHandler extends Thread{
 				out.println(responce);
 			}
 		} else {
-			out.println("Log In Failed");
+			int n =i-1;
+			if(n>0){
+			out.println("Log In Failed. You have " + n + " more attempts before your account is blocked.");
+			}
+			else{
+			out.println("Log In Failed. Your account is now blocked.");	
+			}
 		}
+	}
 	}
 
 	private void handleRegister() throws IOException{
@@ -105,7 +115,7 @@ public class NewBankClientHandler extends Thread{
 		out.println("Please enter your email address. You will be enrolled to our newsletter & updates");
 		String email = in.readLine();
 
-		out.println("Please enter your subscription password. Please note this is NOT your BANKING PASSWORD");
+		out.println("Please enter a password for your account.");
 		String pass = in.readLine();
 
 		Registration registration = new Registration(fullname, email, pass);
@@ -114,7 +124,7 @@ public class NewBankClientHandler extends Thread{
 
 		newcustomer.setRegistration(registration);
 
-		bank.addCustomer(newcustomer);
+		bank.addCustomer(newcustomer, pass);
 
 		String username = fullname.split(" ")[0];
 

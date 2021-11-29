@@ -49,6 +49,9 @@ public class NewBankClientHandler extends Thread{
 					case 4:
 						handleRequestCallBack();
 						break;
+					case 5:
+						handleResetPassword();
+						break;
 				}
 			}
 		} catch (IOException e) {
@@ -70,12 +73,18 @@ public class NewBankClientHandler extends Thread{
 		out.println("2 \tRegister");
 		out.println("3 \tShow bank information");
 		out.println("4 \tRequest a call back");
+		out.println("5 \tReset Password");
 	}
 
 	private void handleLogIn() throws IOException{
 		// ask for user name
 		out.println("Enter Username");
 		String userName = in.readLine();
+		//check if username is valid
+		while(!bank.isUsername(userName)){
+			out.println("Not a valid username. Please type your username again.");
+			userName = in.readLine();			
+		}
 		int i=3;
 		for(i=3;i>0;i--){
 		// ask for password. The customer has 3 attempts
@@ -118,13 +127,17 @@ public class NewBankClientHandler extends Thread{
 		out.println("Please enter a password for your account.");
 		String pass = in.readLine();
 
+		out.println("In case you need to reset your password in the future, please answer the following question...");
+		out.println("What was the name of your first pet?.");
+		String memorableWord = in.readLine();
+
 		Registration registration = new Registration(fullname, email, pass);
 
 		Customer newcustomer = new Customer();
 
 		newcustomer.setRegistration(registration);
 
-		bank.addCustomer(newcustomer, pass);
+		bank.addCustomer(newcustomer, pass, memorableWord);
 
 		String username = fullname.split(" ")[0];
 
@@ -156,6 +169,30 @@ public class NewBankClientHandler extends Thread{
 		out.println("\n--------------------------------------");
 		out.println("Thank you. A member of the team will be in touch within one hour.");
 		out.println("--------------------------------------\n");
+	}
+
+	private void handleResetPassword() throws IOException{
+		// ask for user name
+		out.println("Enter username");
+		String userName = in.readLine();
+		while(!bank.isUsername(userName)){
+			out.println("Not a valid username. Please type your username again.");
+			userName = in.readLine();			
+		}
+		// ask for memorable word
+		out.println("What was the name of your first pet?");
+		String memorableWord = in.readLine();
+		out.println("Checking Details...");
+		// check memorable word against word stored
+		if(bank.isMemorableWord(userName, memorableWord)){
+			out.println("Memorable word correct. Please type out a new password.");
+			String password = in.readLine();
+			bank.getCustomer(userName).setPassword(password);
+			out.println("Password reset.");			
+		}
+		// requests
+
+
 	}
 
 	private void printMenu2(){

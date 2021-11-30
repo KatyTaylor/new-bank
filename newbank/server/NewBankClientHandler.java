@@ -97,7 +97,7 @@ public class NewBankClientHandler extends Thread{
 		// if the user is authenticated then get requests from the user and process them
 
 		if(customer != null) {
-			printMenu2();
+			printMenu2(customer);
 
 			while(true) {
 				String request = in.readLine();
@@ -195,13 +195,17 @@ public class NewBankClientHandler extends Thread{
 
 	}
 
-	private void printMenu2(){
+	private void printMenu2(CustomerID customer){
 		out.println("Log In Successful. What do you want to do?");
 
+		if(bank.hasAccount(customer, "Main") || bank.hasAccount(customer, "Savings") || bank.hasAccount(customer, "Checking")){
 		out.println("1. Check your accounts");
-		out.println("2. Open new Main account");
-		out.println("3. Open new Savings account");
-		out.println("4. Open new Checking account");
+		if(!bank.hasAccount(customer, "Main")){
+			out.println("2. Open new Main account");}
+		if(!bank.hasAccount(customer, "Savings")){
+			out.println("3. Open new Savings account");}
+		if(!bank.hasAccount(customer, "Checking")){
+			out.println("4. Open new Checking account");}
 	}
-
+	}
 }

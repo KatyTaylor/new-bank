@@ -92,6 +92,13 @@ public class NewBank {
 		return (customers.get(customer.getKey())).accountsToString();
 	}
 
+	public boolean hasAccount(CustomerID customer, String account) {
+		if((customers.get(customer.getKey())).accountsToString().contains(account)){
+			return true;
+		}
+		return false;
+	}
+
 	public void addCustomer(Customer customer, String password, String memorableWord) {
 		customer.addAccount(new Account("Main", 0));
 		customer.setPassword(password);

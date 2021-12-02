@@ -78,10 +78,27 @@ public class NewBank {
 		if(customers.containsKey(customer.getKey())) {
 			switch(request) {
 			//case "SHOWMYACCOUNTS" : return showMyAccounts(customer);
-				case "1" : return showMyAccounts(customer);
-				case "2" : return addAccount(customer, "Main");
-				case "3" : return addAccount(customer, "Savings");
-				case "4" : return addAccount(customer, "Checking");
+			// if user has no accounts, show accounts is an invalid request
+			//do not allow users to create accounts that they already have
+				case "1" : if(!hasAccount(customer, "Main") && !hasAccount(customer, "Savings") && !hasAccount(customer, "Checking")){
+								return "Invalid request. Please try again.";} 
+						   else{
+							   return showMyAccounts(customer);}
+
+				case "2" : if(hasAccount(customer, "Main")){
+								return "Invalid request. Please try again.";} 
+						   else{
+								return addAccount(customer, "Main");}
+
+				case "3" : if(hasAccount(customer, "Savings")){
+								return "Invalid request. Please try again.";} 
+						   else{
+							   return addAccount(customer, "Savings");}
+
+				case "4" : if(hasAccount(customer, "Checking")){
+								return "Invalid request. Please try again.";} 
+				           else{
+							   return addAccount(customer, "Checking");}
 			default : return "FAIL";
 			}
 		}
@@ -90,6 +107,13 @@ public class NewBank {
 
 	private String showMyAccounts(CustomerID customer) {
 		return (customers.get(customer.getKey())).accountsToString();
+	}
+
+	public boolean hasAccount(CustomerID customer, String account) {
+		if((customers.get(customer.getKey())).accountsToString().contains(account)){
+			return true;
+		}
+		return false;
 	}
 
 	public void addCustomer(Customer customer, String password, String memorableWord) {

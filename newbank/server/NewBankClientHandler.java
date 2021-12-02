@@ -97,13 +97,23 @@ public class NewBankClientHandler extends Thread{
 		// if the user is authenticated then get requests from the user and process them
 
 		if(customer != null) {
-			printMenu2();
+			i=0;
+			out.println("Log In Successful");
+			printMenu2(customer);
 
-			while(true) {
+			// while the user makes invalid requests, keep printing their options
+			boolean invalidRequest = true;
+			while(invalidRequest) {
 				String request = in.readLine();
 				System.out.println("Request from " + customer.getKey());
 				String responce = bank.processRequest(customer, request);
 				out.println(responce);
+				invalidRequest = false;
+				//when the user makes an invalid request, re-print their available optons
+				if (responce == "Invalid request. Please try again."){
+					invalidRequest=true;
+					printMenu2(customer);
+				}
 			}
 		} else {
 			int n =i-1;
@@ -195,13 +205,17 @@ public class NewBankClientHandler extends Thread{
 
 	}
 
-	private void printMenu2(){
-		out.println("Log In Successful. What do you want to do?");
+	private void printMenu2(CustomerID customer){
+		out.println("What do you want to do?");
 
+		if(bank.hasAccount(customer, "Main") || bank.hasAccount(customer, "Savings") || bank.hasAccount(customer, "Checking")){
 		out.println("1. Check your accounts");
-		out.println("2. Open new Main account");
-		out.println("3. Open new Savings account");
-		out.println("4. Open new Checking account");
+		if(!bank.hasAccount(customer, "Main")){
+			out.println("2. Open new Main account");}
+		if(!bank.hasAccount(customer, "Savings")){
+			out.println("3. Open new Savings account");}
+		if(!bank.hasAccount(customer, "Checking")){
+			out.println("4. Open new Checking account");}
 	}
-
+	}
 }

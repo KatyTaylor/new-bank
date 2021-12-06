@@ -19,16 +19,30 @@ Returns a list of all the customers accounts along with their current balance
 e.g. Main: 1000.0
 
 2
-Opens a new 'Main' account
+Opens a new 'Main' account or views 'Main' account
 Returns SUCCESS or FAIL
 
 3
-Opens a new 'Savings' account
+Opens a new 'Savings' account or views 'Savings' account
 Returns SUCCESS or FAIL
 
 4
-Opens a new 'Checking' account
+Opens a new 'Checking' account or views 'Checking' account
 Returns SUCCESS or FAIL
+
+View account options
+
+1
+Deposits money into desired account
+Returns SUCCESS or FAIL and new account balance
+
+2
+Withdraws money from desired account
+Returns SUCCESS or FAIL and new account balance
+
+2
+Moves money from desired account
+Returns SUCCESS or FAIL and new account balance
 
 
 Not yet implemented:

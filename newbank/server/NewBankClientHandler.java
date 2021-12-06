@@ -83,52 +83,44 @@ public class NewBankClientHandler extends Thread{
 		//check if username is valid
 		while(!bank.isUsername(userName)){
 			out.println("Not a valid username. Please type your username again.");
-			userName = in.readLine();			
+			userName = in.readLine();
 		}
 		int i=3;
 		for(i=3;i>0;i--){
-		// ask for password. The customer has 3 attempts
-		out.println("Enter Password");
-		String password = in.readLine();
-		out.println("Checking Details...");
-		// authenticate user and get customer ID token from bank for use in subsequent
-		// requests
-		CustomerID customer = bank.checkLogInDetails(userName, password);
-		// if the user is authenticated then get requests from the user and process them
+			// ask for password. The customer has 3 attempts
+			out.println("Enter Password");
+			String password = in.readLine();
+			out.println("Checking Details...");
+			// authenticate user and get customer ID token from bank for use in subsequent
+			// requests
+			CustomerID customer = bank.checkLogInDetails(userName, password);
+			// if the user is authenticated then get requests from the user and process them
 
-		if(customer != null) {
-			i=0;
-			out.println("Log In Successful");
-			printMenu2(customer);
+			if(customer != null) {
+				out.println("Log In Successful");
+				while(true) {
 
-			// while the user makes invalid requests, keep printing their options
-			boolean invalidRequest = true;
-			while(invalidRequest) {
-				String request = in.readLine();
-				System.out.println("Request from " + customer.getKey());
-				String responce = bank.processRequest(customer, request);
-				out.println(responce);
-				invalidRequest = false;
-				//when the user makes an invalid request, re-print their available optons
-				if (responce == "Invalid request. Please try again."){
-					invalidRequest=true;
 					printMenu2(customer);
+					String request = in.readLine();
+					System.out.println("Request from " + customer.getKey());
+					String responce = bank.processRequest(customer, request);
+					out.println(responce);
+
 				}
-			}
-		} else {
-			int n =i-1;
-			if(n>0){
-			out.println("Log In Failed. You have " + n + " more attempts before your account is blocked.");
-			}
-			else{
-			out.println("Log In Failed. Your account is now blocked.");	
+			} else {
+				int n =i-1;
+				if(n>0){
+					out.println("Log In Failed. You have " + n + " more attempts before your account is blocked.");
+				}
+				else{
+					out.println("Log In Failed. Your account is now blocked.");
+				}
 			}
 		}
 	}
-	}
 
 	private void handleRegister() throws IOException{
-		out.println("Please enter your Full Name including Title");
+		out.println("Please enter your Name");
 		String fullname = in.readLine();
 
 		out.println("Please enter your email address. You will be enrolled to our newsletter & updates");
@@ -206,7 +198,7 @@ public class NewBankClientHandler extends Thread{
 	}
 
 	private void printMenu2(CustomerID customer){
-		out.println("What do you want to do?");
+		out.println("\nWhat do you want to do?\n");
 
 		if(bank.hasAccount(customer, "Main") || bank.hasAccount(customer, "Savings") || bank.hasAccount(customer, "Checking")){
 		out.println("1. Check your accounts");

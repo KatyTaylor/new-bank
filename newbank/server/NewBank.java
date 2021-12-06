@@ -77,7 +77,6 @@ public class NewBank {
 	public synchronized String processRequest(CustomerID customer, String request) {
 		if(customers.containsKey(customer.getKey())) {
 			switch(request) {
-			//case "SHOWMYACCOUNTS" : return showMyAccounts(customer);
 			// if user has no accounts, show accounts is an invalid request
 			//do not allow users to create accounts that they already have
 				case "1" : if(!hasAccount(customer, "Main") && !hasAccount(customer, "Savings") && !hasAccount(customer, "Checking")){

@@ -31,7 +31,7 @@ public class Customer {
 			if(a.getAccountName() == account){
 				a.deposit(amount);
 			
-		return "Deposit succesful! \n" + a.toString();
+		return "Deposit successful! \n" + a.toString();
 	}}
 	return "FAIL";
 }

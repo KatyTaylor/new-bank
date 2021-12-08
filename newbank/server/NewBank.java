@@ -83,25 +83,53 @@ public class NewBank {
 								return "Invalid request. Please try again.";} 
 						   else{
 							   return showMyAccounts(customer);}
-
-				case "2" : if(hasAccount(customer, "Main")){
-								return "Invalid request. Please try again.";} 
-						   else{
-								return addAccount(customer, "Main");}
-
-				case "3" : if(hasAccount(customer, "Savings")){
-								return "Invalid request. Please try again.";} 
-						   else{
-							   return addAccount(customer, "Savings");}
-
-				case "4" : if(hasAccount(customer, "Checking")){
-								return "Invalid request. Please try again.";} 
-				           else{
-							   return addAccount(customer, "Checking");}
+				case "2" : return handleMenu2Response(customer, "Main");
+				case "3" : return handleMenu2Response(customer, "Savings");
+				case "4" : return handleMenu2Response(customer, "Checking");
 			default : return "FAIL";
 			}
 		}
 		return "FAIL";
+	}
+
+			// commands from the NewBank customer are processed in this method
+			public synchronized String accountType(String request) {
+				switch(request) {
+				// based on the option selected, determine which account the customer is dealing with
+					case "2" : return "Main";
+					case "3" : return "Savings";
+					case "4" : return "Checking";
+				default : return "FAIL";
+				}
+			}
+
+		// commands from the NewBank customer are processed in this method
+		public synchronized String processAccountRequest(CustomerID customer, String request, String account, double amount) {
+				switch(request) {
+				// allow user to deposit money into account
+					case "1" : return (customers.get(customer.getKey())).depositToAccount(account, amount);
+				//allow user to withdraw form account
+					case "2" : return null;
+				//allow user to move money from one account to another
+					case "3" : return null;
+				default : return "FAIL";
+				}
+			}
+
+
+	public String handleMenu2Response (CustomerID customer, String account){
+		if(hasAccount(customer, account)){
+			return showAccountOptions(account);} 
+	   if(!hasAccount(customer, account)){
+		   return addAccount(customer, account);}
+		   else{return "FAIL";}
+	}
+
+	private String showAccountOptions( String account){
+		return "\n 1. Deposit money into " + account + " account" +
+		"\n 2. Withdraw money from " + account + " account" +
+		"\n 3. Move money from " + account + " account into another account";
+
 	}
 
 	private String showMyAccounts(CustomerID customer) {

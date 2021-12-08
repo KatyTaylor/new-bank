@@ -26,6 +26,16 @@ public class Customer {
 		return s;
 	}
 
+	public String depositToAccount(String account, double amount) {
+		for(Account a : accounts) {
+			if(a.getAccountName() == account){
+				a.deposit(amount);
+			
+		return "Deposit successful! \n" + a.toString();
+	}}
+	return "FAIL";
+}
+
 	public void addAccount(Account account) {
 		accounts.add(account);
 	}

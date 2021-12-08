@@ -97,14 +97,27 @@ public class NewBankClientHandler extends Thread{
 			// if the user is authenticated then get requests from the user and process them
 
 			if(customer != null) {
+				// to break out of the enter password loop
+				i=-1;
 				out.println("Log In Successful");
-				while(true) {
+				boolean showMenu2=(true);
+				while(showMenu2) {
 
 					printMenu2(customer);
 					String request = in.readLine();
-					System.out.println("Request from " + customer.getKey());
+					out.println("\nRequest from " + customer.getKey());
 					String responce = bank.processRequest(customer, request);
 					out.println(responce);
+					String account = bank.accountType(request);
+					// when a customer has selected an account to view, show them new options
+					if(responce.contains("Withdraw")){
+						showMenu2 = false;
+						String request2 = in.readLine();
+						out.println("\nOption " + request2 + " selected. How much would you like to deposit?");
+						double amount = Double.parseDouble(in.readLine());
+						responce = bank.processAccountRequest(customer, request2, account, amount);
+						out.println(responce);
+					}
 
 				}
 			} else {
@@ -203,11 +216,17 @@ public class NewBankClientHandler extends Thread{
 		if(bank.hasAccount(customer, "Main") || bank.hasAccount(customer, "Savings") || bank.hasAccount(customer, "Checking")){
 		out.println("1. Check your accounts");
 		if(!bank.hasAccount(customer, "Main")){
-			out.println("2. Open new Main account");}
+			out.println("2. Open new Main account");
+		}else{
+			out.println("2. View Main account");}
 		if(!bank.hasAccount(customer, "Savings")){
-			out.println("3. Open new Savings account");}
+			out.println("3. Open new Savings account");
+		}else{
+			out.println("3. View Savings account");}
 		if(!bank.hasAccount(customer, "Checking")){
-			out.println("4. Open new Checking account");}
+			out.println("4. Open new Checking account");
+		}else{
+			out.println("4. View Main account");}
 	}
 	}
 }

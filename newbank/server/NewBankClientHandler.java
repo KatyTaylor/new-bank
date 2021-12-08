@@ -216,16 +216,16 @@ public class NewBankClientHandler extends Thread{
 		if(bank.hasAccount(customer, "Main") || bank.hasAccount(customer, "Savings") || bank.hasAccount(customer, "Checking")){
 		out.println("1. Check your accounts");
 		if(!bank.hasAccount(customer, "Main")){
-			out.println("2. Open new Main account");}
-		if(bank.hasAccount(customer, "Main")){
+			out.println("2. Open new Main account");
+		}else{
 			out.println("2. View Main account");}
 		if(!bank.hasAccount(customer, "Savings")){
-			out.println("3. Open new Savings account");}
-		if(bank.hasAccount(customer, "Saving")){
+			out.println("3. Open new Savings account");
+		}else{
 			out.println("3. View Savings account");}
 		if(!bank.hasAccount(customer, "Checking")){
-			out.println("4. Open new Checking account");}
-		if(bank.hasAccount(customer, "Checking")){
+			out.println("4. Open new Checking account");
+		}else{
 			out.println("4. View Main account");}
 	}
 	}

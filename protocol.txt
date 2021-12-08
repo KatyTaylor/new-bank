@@ -40,7 +40,7 @@ Returns SUCCESS or FAIL and new account balance
 Withdraws money from desired account
 Returns SUCCESS or FAIL and new account balance
 
-2
+3
 Moves money from desired account
 Returns SUCCESS or FAIL and new account balance
 

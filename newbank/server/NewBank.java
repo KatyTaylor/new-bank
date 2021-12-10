@@ -86,6 +86,7 @@ public class NewBank {
 				case "2" : return handleMenu2Response(customer, "Main");
 				case "3" : return handleMenu2Response(customer, "Savings");
 				case "4" : return handleMenu2Response(customer, "Checking");
+
 			default : return "FAIL";
 			}
 		}
@@ -109,7 +110,7 @@ public class NewBank {
 				// allow user to deposit money into account
 					case "1" : return (customers.get(customer.getKey())).depositToAccount(account, amount);
 				//allow user to withdraw form account
-					case "2" : return null;
+					case "2" : return (customers.get(customer.getKey())).withdrawFromAccount(account, amount);
 				//allow user to move money from one account to another
 					case "3" : return null;
 				default : return "FAIL";

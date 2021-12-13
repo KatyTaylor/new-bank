@@ -113,7 +113,7 @@ public class NewBankClientHandler extends Thread{
 					if(responce.contains("Withdraw")){
 						showMenu2 = false;
 						String request2 = in.readLine();
-						out.println("\nHow much would you like to " + showRequest2(request2) + "?");
+						out.println("\nOption " + request2 + " selected. How much would you like to deposit?");
 						double amount = Double.parseDouble(in.readLine());
 						responce = bank.processAccountRequest(customer, request2, account, amount);
 						out.println(responce);
@@ -226,19 +226,8 @@ public class NewBankClientHandler extends Thread{
 		if(!bank.hasAccount(customer, "Checking")){
 			out.println("4. Open new Checking account");
 		}else{
-			out.println("4. View Checking account");}
+			out.println("4. View Main account");}
+		out.println("5. Bank Statements");
 	}
-	}
-	private String showRequest2(String request2) {
-		switch (request2) {
-			case "1":
-				return "deposit";
-			case "2":
-				return "withdraw";
-			case "3":
-				return "move";
-			default:
-				return "Invalid request";
-		}
 	}
 }

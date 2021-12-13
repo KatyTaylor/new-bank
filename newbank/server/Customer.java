@@ -36,6 +36,20 @@ public class Customer {
 	return "FAIL";
 }
 
+	public String withdrawFromAccount(String account, double amount) {
+		for(Account a : accounts) {
+				if(a.getAccountName() == account){
+					if(a.getAccountBalance() - amount < 0){
+						return "Insufficient funds";}
+					else {
+					a.withdraw(amount);
+					return "Withdrawal successful! \n" + a.toString();
+				}
+			}
+		}
+		return "FAIL";
+	}
+
 	public void addAccount(Account account) {
 		accounts.add(account);
 	}

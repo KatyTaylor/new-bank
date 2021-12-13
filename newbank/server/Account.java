@@ -27,9 +27,18 @@ public class Account {
 		return accountName;
 	}
 
+	public double getAccountBalance() {
+		return balance;
+	}
+
 
 	public void deposit( double amount){
 		this.balance = balance + amount;
+	}
+
+	public void withdraw (double amount) {
+
+			this.balance -= amount;
 	}
 
 }

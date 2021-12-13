@@ -11,7 +11,7 @@ public class Account {
 	private String accountName;
 	private double openingBalance;
 	private double balance;
-	//DecimalFormat moneyFormat = new DecimalFormat("'£'###,##0.00");
+	DecimalFormat moneyFormat = new DecimalFormat("'£'###,##0.00");
 
 	public Account(String accountName, double openingBalance) {
 		this.accountName = accountName;
@@ -27,18 +27,12 @@ public class Account {
 		return accountName;
 	}
 
-	public double getAccountBalance() {
-		return balance;
+	public String getAccountBalance() {
+		return moneyFormat.format(balance);
 	}
-
 
 	public void deposit( double amount){
 		this.balance = balance + amount;
-	}
-
-	public void withdraw (double amount) {
-
-			this.balance -= amount;
 	}
 
 }

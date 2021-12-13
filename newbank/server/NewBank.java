@@ -86,7 +86,7 @@ public class NewBank {
 				case "2" : return handleMenu2Response(customer, "Main");
 				case "3" : return handleMenu2Response(customer, "Savings");
 				case "4" : return handleMenu2Response(customer, "Checking");
-
+				case "5" : return showMyStatements(customer);
 			default : return "FAIL";
 			}
 		}
@@ -110,7 +110,7 @@ public class NewBank {
 				// allow user to deposit money into account
 					case "1" : return (customers.get(customer.getKey())).depositToAccount(account, amount);
 				//allow user to withdraw form account
-					case "2" : return (customers.get(customer.getKey())).withdrawFromAccount(account, amount);
+					case "2" : return null;
 				//allow user to move money from one account to another
 					case "3" : return null;
 				default : return "FAIL";
@@ -130,11 +130,14 @@ public class NewBank {
 		return "\n 1. Deposit money into " + account + " account" +
 		"\n 2. Withdraw money from " + account + " account" +
 		"\n 3. Move money from " + account + " account into another account";
-
 	}
 
 	private String showMyAccounts(CustomerID customer) {
 		return (customers.get(customer.getKey())).accountsToString();
+	}
+
+	private String showMyStatements(CustomerID customer) {
+		return (customers.get(customer.getKey())).statementToString();
 	}
 
 	public boolean hasAccount(CustomerID customer, String account) {
